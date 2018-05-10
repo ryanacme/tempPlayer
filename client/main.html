@@ -28,11 +28,31 @@
   </ul>
 </template>
 
-<template name="player">
-  {{#each sounds}}
-    <audio id="audio-player" preload="none" controls>
-      <source src="http://stream.ktuh.org:8000/stream-mp3" type="audio/mp3">
-    </audio>
-  {{/each}}
+<!-- <template name="player">
+  {{#if tasksLoaded}}
+    {{#each sounds}}
+      <audio id="audio-player" preload="none" controls>
+        <source src="http://stream.ktuh.org:8000/stream-mp3" type="audio/mp3">
+      </audio>
+    {{/each}}
+  {{else}}
+    <h1>hiiiiiiiiiiiii</h1>
+  {{/if}}
+</template> -->
 
+<template name="player">
+  <ul>
+  {{#each sounds}}
+    <li>
+      {{this.snd_alt}}
+      <h1>hiiiiiiiiiiiii</h1>
+      <audio class="audio-player" preload="none" controls>
+        <source src="http://stream.ktuh.org:8000/stream-mp3" type="audio/mp3">
+      </audio>
+    </li>
+  {{else}}
+    <h1>000000000000000</h1>
+  {{/each}}
+  </ul>
 </template>
+
