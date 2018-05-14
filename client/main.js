@@ -4,40 +4,32 @@ import { ReactiveVar } from 'meteor/reactive-var';
 // import 'mediaelement/full';
 import './main.html';
 
-Template.hello.onCreated(function helloOnCreated() {
-  // counter starts at 0
-  this.counter = new ReactiveVar(0);
-});
 
-Template.hello.helpers({
-  counter() {
-    return Template.instance().counter.get();
-  },
-});
+// var player = new MediaElement('player', {
+//    pluginPath: '/packages/johndyer_mediaelement/build/',
+//     success: function(mediaElement, originalNode) {
+//       console.log("111111111111");
+//     }
+//   });
 
-Template.hello.events({
-  'click button'(event, instance) {
-    // increment the counter when button is clicked
-    instance.counter.set(instance.counter.get() + 1);
-  },
-});
 
-Template.player.onRendered(function() {
 
-  $('video, audio').mediaelementplayer({
-	// pluginPath: '/packages/johndyer_mediaelement/build/',
-  });
-  // console.log("hiiiii");
-});
 
-Meteor.subscribe('sounds', function onReady() {
-  Session.set('tasksLoaded', true);
-});
+// Template.player.onRendered(function() {
+//   $('video, audio').mediaelementplayer({
+// 	   pluginPath: '/packages/johndyer_mediaelement/build/',
+//   });
+// });
 
+// Meteor.subscribe('sounds', function onReady() {
+//   Session.set('tasksLoaded', true);
+// });
+
+Meteor.subscribe('sounds');
 
 Template.player.helpers({
   sounds: function(){
-    var obj = Sounds.find();
+    var obj = Sounds.find().fetch();
     // if (obj.length>0){
       var obj2 = [{_id: "pe6x76NkJXbm4wh8Q", snd_alt: "Sound 3"}, {_id: "WNbZ63ffdny5NPkuD", snd_alt: "Sound 4"}]
       console.log("hiiiiii");
@@ -47,6 +39,9 @@ Template.player.helpers({
       // console.log(Array.isArray(obj2));
       // return obj;
       return obj;
+    // }
+    // console.log("00000000000");
+    // return [1,2];
     // }else{
       // console.log("000000000");
       // return null;
